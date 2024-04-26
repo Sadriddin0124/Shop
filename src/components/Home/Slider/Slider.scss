@@ -1,0 +1,149 @@
+/* ImageSlider.css */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-column {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.slick-slider {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.slick-slide {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute !important;
+  margin-top: -30px !important;
+  font-size: 24px !important;
+  color: #333;
+  margin: 25px;
+  z-index: 2;
+}
+
+button.slick-arrow.slick-next:before  {
+  color: transparent !important;
+  font-size: 30px !important;
+  height: 100px !important;
+  margin-right: -160px;
+}
+
+button.slick-arrow.slick-next {
+  margin-right: 260px;
+  width: 24px !important;
+}
+
+button.slick-arrow.slick-prev {
+  margin-left: 140px;
+  width: 24px !important;
+}
+
+.slick-prev:before  {
+  color: transparent !important;
+  font-size: 30px !important;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  color: #555;
+}
+
+.slick-dots {
+  bottom: 17px !important;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #bbb !important;
+  background: #bbb !important;
+  border-radius: 50%;
+  width: 10px !important;
+  height: 10px !important;
+  color: transparent !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: transparent !important;
+  background: var(--colorGreen) !important;
+  border-radius: 50%;
+}
+
+.slider__card {
+  width: 100%;
+  @extend %flex-center;
+  position: relative;
+  height: 80vh;
+  background: #F5F5F5;
+}
+
+.slider__img {
+  width: 40%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.slider__left {
+  padding: 40px;
+  width: 60%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @extend %flex-column;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.slider__top {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #3D3D3D;
+}
+
+.slider__title {
+  font-size: 70px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #3D3D3D;
+  span {
+    color: var(--colorGreen);
+  }
+}
+
+.slider__subtitle {
+  color: #727272;
+  font-size: 14px;
+  line-height: 34px;
+  max-width: 557px;
+}
+
+@media (max-width: 900px) {
+  .slider__title {
+    font-size: 30px;
+  }
+  .slider__left {
+    width: 100%;
+    top: 0;
+    justify-content: start;
+  }
+  .slider__img {
+    width: 100%;
+  }
+}
