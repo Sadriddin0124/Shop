@@ -37,8 +37,8 @@ const Navbar = () => {
   }
   const screenRef = useRef()
   const [screenWidth, setScreenWidth] = useState(null);
-  console.log(screenWidth);
-  
+  console.log(menu);
+  const [navbarVisible, setNavbarVisible] = useState(false)
   return (
     <nav className="nav" ref={screenRef}>
       <div className="navbar__container">
@@ -54,6 +54,10 @@ const Navbar = () => {
             );
           })}
         </ul>
+        <div className={`nav__search ${navbarVisible ? "top-[100px]" : "top-[-100px]"}`}>
+          <CiSearch className="navbar__search"/>
+        <input type="text" placeholder="Search..."/>
+        </div>
         <ul className={`navbar__list2 ${menu === true ? "right-[20px]" : "right-[-200px]"} `}>
           {navLinks?.map((item, index) => {
             return (
@@ -69,7 +73,7 @@ const Navbar = () => {
         </ul>
         <div className="navbar__line"></div>
         <div className="navbar__right">
-          <CiSearch className="navbar__search" />
+          <CiSearch className="navbar__search" onClick={()=>setNavbarVisible(prev=> !prev)}/>
           <div className="navbar__shop">
             <img src={Shopping} alt="" />
           </div>

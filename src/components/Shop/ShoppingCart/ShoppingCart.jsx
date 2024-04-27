@@ -39,29 +39,27 @@ const ShoppingCart = () => {
   ]);
   return (
     <div className="cart">
-      <table className="table">
-        <thead>
-          <tr className="table__line">
-            <th className="table__header">Products</th>
-            <th className="table__header">Price</th>
-            <th className="table__header">Quantity</th>
-            <th className="table__header">Total</th>
-          </tr>
-          <tr className="table__line2"></tr>
-        </thead>
-        <tbody>
+      <div className="table">
+          <div className="table__line">
+            <h1 className="table__header">Products</h1>
+            <h1 className="table__header">Price</h1>
+            <h1 className="table__header">Quantity</h1>
+            <h1 className="table__header">Total</h1>
+          <div className="table__line2"></div>
+        </div>
+        <div className="tbody">
           {cartData?.map((item, index) => {
             return (
-              <tr key={index} className="tbody__line">
-                <td className="tbody__img">
+              <div key={index} className="tbody__line">
+                <div className="tbody__img">
                   <img src={item?.img} alt={item?.title} />
                   <div>
                     <h1>{item?.title}</h1>
                     <p>{item?.bottom}</p>
+                <p className="tbody__price">{item?.price}</p>
                   </div>
-                </td>
-                <td className="tbody__price">{item?.price}</td>
-                <td>
+                </div>
+                <div className="tbody__price">{item?.price}</div>
                   <div className="tbody__counter">
                     <button>
                       <FaMinus size={12} />
@@ -71,18 +69,15 @@ const ShoppingCart = () => {
                       <FaPlus size={12} />
                     </button>
                   </div>
-                </td>
-                <td>{item?.total}</td>
-                <td>
+                <p className="total">{item?.total}</p>
                   <button className="delete">
                     <AiOutlineDelete />
                   </button>
-                </td>
-              </tr>
+              </div>
             );
           })}
-        </tbody>
-      </table>
+        </div>
+      </div>
       <div className="cart__card">
         <h1 className="card__title">Cart Totals</h1>
         <p className="card__top">Coupon Apply</p>

@@ -22,6 +22,10 @@
     width: 100%;
     @extend %flex_center;
     padding: 25px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 12;
+    background: white;
 }
 
 .navbar__container {
@@ -98,6 +102,32 @@
     display: none;
 }
 
+.navbar__list2 {
+    display: none;
+}
+
+.nav__search {
+    position: fixed;
+    width: 60%;
+    // top: 100px;
+    left: 20%;
+    border-radius: 6px;
+    background: white;
+    @extend %flex_center;
+    padding: 0 12px;
+    gap: 10px;
+    transition: .3s all;
+    z-index: -1;
+    input {
+        width: 100%;
+        padding: 12px;
+        outline: none;
+    }
+}
+
+.navbar__search {
+    font-size: 24px;
+}
 
 @media (max-width: 1100px) {
     .navbar__line {
@@ -119,11 +149,12 @@
         padding: 10px;
         width: 200px;
         transition: .3s all;
-        top: 100px;
+        top: 80px;
         gap: 10px;
         z-index: 3;
         background: white;
         flex-direction: column;
+        display: flex;
     }
     .navbar__link {
         padding-bottom: 10px;

@@ -57,8 +57,10 @@
 
 .header__left-lg {
     background: var(--colorFB);
-    width: 444px;
-    height: 444px;
+    max-width: 444px;
+    width: 100%;
+    max-height: 444px;
+    height: 100%;
     img {
         cursor: pointer;
         mix-blend-mode: multiply;
@@ -159,6 +161,7 @@
     @extend %flex_center;
     justify-content: start;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .right__counter {
@@ -186,7 +189,8 @@
     font-weight: 700;
     color: var(--colorGreen);
     border: 1px solid var(--colorGreen);
-    border-radius: 6px
+    border-radius: 6px;
+    white-space: nowrap;
 }
 
 .right__btn-outline2 {
@@ -214,5 +218,22 @@
             font-size: 15px;
             font-weight: 500;
         }
+    }
+}
+
+@media (max-width: 1250px) {
+    .header {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px)  {
+    .header__left {
+        flex-direction: column-reverse;
+        min-height: 400px;
+        height: 100%;
+    }
+    .header__left-sm {
+        flex-direction: row;
     }
 }

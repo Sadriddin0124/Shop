@@ -7,7 +7,7 @@ import Shop from './pages/Shop/Shop'
 const App = () => {
   return (
     <div>
-      <div>
+      <div className='h-[80px]'>
         <Navbar/>
       </div>
       <div>
