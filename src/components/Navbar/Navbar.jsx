@@ -44,9 +44,6 @@ const Navbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const saveCategory = (category) => {
     sessionStorage.setItem("category", category)
-    setTimeout(() => {
-      window.location.reload()
-    }, 1000);
   }
   return (
     <nav className="nav">
