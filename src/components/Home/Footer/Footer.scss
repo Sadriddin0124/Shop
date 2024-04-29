@@ -109,12 +109,16 @@
 //footer center ↓
 .footer__center {
   width: 100%;
-  padding: 25px;
+  padding: 5px 15px 5px 5px;
   background: rgba(70, 163, 88, 0.1);
   @extend %flex_center;
   justify-content: start;
   flex-wrap: wrap;
   gap: 70px;
+  img {
+    height: 70px;
+    mix-blend-mode: multiply
+  }
 }
 
 .footer__center-item {

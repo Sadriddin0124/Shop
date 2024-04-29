@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Main.scss";
 import Button from "../../Button/Button";
 import MainLeftImage from "../../../assets/main__left.png";
-import Plants from "../Plants/Plants";
+import Cards from "../Cards/Cards";
 import NewArrivals from "../New Arrivals/NewArrivals";
 import Sale from "../Sale/Sale";
 const Main = () => {
@@ -52,7 +52,7 @@ const Main = () => {
     setActiveMainLink(id);
   };
   const [components, setComponents] = useState([
-    {id: 1, component: <Plants/>},
+    {id: 1, component: <Cards/>},
     {id: 2, component: <NewArrivals/>},
     {id: 3, component: <Sale/>},
   ])
@@ -128,13 +128,13 @@ const Main = () => {
               );
             })}
           </ul>
-          <div>
+          {/* <div>
             <p>Sort by: default sorting </p>
-          </div>
+          </div> */}
         </div>
         {
             components?.filter(item=> item?.id === activeMainLink).map((item,index)=> {
-                return <div key={item?.id}>
+                return <div key={item?.id} className="main__right-cards">
                     {item?.component}
                 </div>
             })

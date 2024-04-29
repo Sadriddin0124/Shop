@@ -18,11 +18,11 @@
     flex-direction: column;
 }
 
-.plantcard {
+.related__card {
     width: 258px;
 }
 
-.plantcard__img {
+.related__card-img {
     width: 100%;
     height: 300px;
     background: #FBFBFB;
@@ -33,7 +33,7 @@
     }
 }
 
-.plantcard__footer {
+.related__card-footer {
     padding: 12px 0;
     h1 {
         font-size: 16px;

@@ -86,23 +86,71 @@ button.slick-arrow.slick-prev {
   border-radius: 50%;
 }
 
+.slider {
+  margin-top: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 .slider__card {
   width: 100%;
   @extend %flex-center;
   position: relative;
-  height: 80vh;
+  height: 35vw;
   background: #F5F5F5;
+  overflow: hidden;
 }
 
 .slider__img {
-  width: 40%;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  content: '';
+  width: 50%;
+  height: 100%;
+  border-left: 10px solid var(--colorGreen);
+  z-index: 13;
+  border-radius: 50%;
+  top: -10%;
+  right: -10%;
+  overflow: hidden;
+  .slider__price {
+    position: absolute;
+    z-index: 15;
+    top: 60px;
+    left: 15%;
+    .icon {
+      position: relative;
+      font-size: 100px;
+      transform: rotate(-90deg);
+      color: var(--colorGreen);
+    }
+    p {
+      position: absolute;
+      top: 35%;
+      left: 25%;
+      color: white;
+      font-size: 24px;
+    }
+  }
+  .img {
+    position: absolute;
+    right: 10%;
+    bottom: 0%;
+    z-index: 14;
+    width: 80%;
+    height: 50vh;
+    img {
+      width: 100%;
+      height: 100%;
+      mix-blend-mode: multiply !important;
+      object-fit: contain;
+    }
+  }
 }
+
+
 .slider__left {
   padding: 40px;
-  width: 60%;
+  width: 50%;
   position: absolute;
   left: 0;
   top: 0;
@@ -118,7 +166,7 @@ button.slick-arrow.slick-prev {
 }
 
 .slider__title {
-  font-size: 70px;
+  font-size: 3rem;
   text-transform: uppercase;
   font-weight: bold;
   color: #3D3D3D;
@@ -135,15 +183,57 @@ button.slick-arrow.slick-prev {
 }
 
 @media (max-width: 900px) {
+  .slider__card {
+    height: 50vw;
+  }
   .slider__title {
-    font-size: 30px;
+    font-size: 16px;
   }
   .slider__left {
     width: 100%;
     top: 0;
     justify-content: start;
+    padding: 20px;
+    gap: 5px;
+  }
+  .slider__subtitle {
+    font-size: 20px;
+    font-weight: 600;
   }
   .slider__img {
-    width: 100%;
+  .img {
+    height: 250px;
+    object-fit: cover;
+    bottom: 0;
   }
+  }
+}
+
+@media (max-width: 447px) {
+  .slider__top {
+    display: none;
+  }
+  .slider__img {
+    img {
+      padding: 5px;
+    }
+    .icon {
+      bottom: -50px;
+      left: 30px;
+      transform: rotate(0deg);
+      display: none;
+    }
+    .slider__price {
+      right: 10px;
+      bottom: -30px;
+      // transform: rotate(180deg);
+      p {
+        padding: 12px 20px;
+        background: var(--colorGreen);
+        top: 45%;
+        left: 12%;
+        border-radius: 20px 0;
+      }
+    }
+  } 
 }

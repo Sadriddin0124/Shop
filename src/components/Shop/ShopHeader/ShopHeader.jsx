@@ -6,27 +6,33 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaMinus, FaStar, FaTwitter } fr
 import Button from '../../Button/Button';
 import { CiHeart } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
+import { useShopStore } from '../../../store/ShopStore/ShopStore';
 
 const ShopHeader = () => {
-    const [shopImage, setShopImage] = useState([
-        {id: 1, img: Image2},
-        {id: 2, img: Image1},
-        {id: 3, img: Image2},
-        {id: 4, img: Image1},
-    ])
-    const [activeImg, setActiveImg] = useState(2)
+    const {getSingleProduct} = useShopStore()
+    const [singleProduct, setSingleProduct] = useState("")
+    const [activeImg, setActiveImg] = useState(0)
     useEffect(()=> {
-        let id = +sessionStorage.getItem("activeImg")
-        if (id) {
-            setActiveImg(id)
+        let index = +sessionStorage.getItem("activeImg")
+        if (index) {
+            setActiveImg(index)
         }else {
-            setActiveImg(2)
+            setActiveImg(0)
         }
+        receiveProduct()
     },[])
-    let activeImage = shopImage.find((item)=> item?.id === activeImg)
-    const changeActiveImg = (id) => {
-        sessionStorage.setItem("activeImg", id)
-        setActiveImg(id)
+    const id = window.location.href.split("/")[4]
+    const receiveProduct = async() => {
+        const response = await getSingleProduct(id)
+        console.log(response);
+        setSingleProduct(response?.data)
+    }
+    let activeImage = singleProduct?.images?.find((item,index)=> index === activeImg)
+    console.log(activeImg);
+    const changeActiveImg = (index) => {
+        console.log(index);
+        sessionStorage.setItem("activeImg", index)
+        setActiveImg(index)
     }
     const size = ["S", "M", "L", "XL"]
     const [activeSize, setActiveSize] = useState(0)
@@ -36,33 +42,36 @@ const ShopHeader = () => {
       <div className="header__left">
         <div className="header__left-sm">
             {
-                shopImage?.map((item,index)=> {
-                    return <div className={`${item?.id === activeImg ? 'active__image' : ""} header__sm-item`} key={index} onClick={()=>changeActiveImg(item?.id)}>
-                        <img src={item?.img} alt={item?.id} />
+                singleProduct?.images?.filter((el,index)=> index < 4)?.map((item,index)=> {
+                    return <div className={`${item?.id === activeImg ? 'active__image' : ""} header__sm-item`} key={index} onClick={()=>changeActiveImg(index)}>
+                        <img src={item} alt={item?.id}/>
                     </div>
                 })
             }
         </div>
         <div className="header__left-lg">
-            <img src={activeImage?.img} alt="activeImage" />
+            <img src={activeImage} alt="activeImage" />
         </div>
       </div>
       <div className="header__right">
-        <h1 className="header__right-title">Barberton Daisy</h1>
+        <h1 className="header__right-title">{singleProduct?.title} {singleProduct?.brand}</h1>
         <div className="header__right-price">
-            <h3>$119.00</h3>
+            <div className='flex gap-[10px]'>
+            <h3>${singleProduct?.price}.00</h3>
+            <h2 className='text-[gray]'>-${singleProduct?.discountPercentage}.00</h2>
+            </div>
             <div>
             <FaStar className='orange__star' size={15}/>
-            <FaStar className='orange__star' size={15}/>
-            <FaStar className='orange__star' size={15}/>
-            <FaStar className='orange__star' size={15}/>
-            <FaStar className='gray__star' size={15}/>
-            <p>19 Customer Review</p>
+            {/* <FaStar className='orange__star' size={15}/> */}
+            {/* <FaStar className='orange__star' size={15}/> */}
+            {/* <FaStar className='orange__star' size={15}/> */}
+            {/* <FaStar className='gray__star' size={15}/> */}
+            <p>{singleProduct?.rating}</p>
             </div>
         </div>
         <div className="header__right-desc">
             <h1>Short Description</h1>
-            <p>The ceramic cylinder planters come with a wooden stand to help elevate your plants off the ground. The ceramic cylinder planters come with a wooden stand to help elevate your plants off the ground. </p>
+            <p>{singleProduct?.description}</p>
         </div>
         <div className="header__right-size">
             <h1>Size: </h1>
@@ -82,8 +91,7 @@ const ShopHeader = () => {
         </div>
         <div className="right__footer">
             <p>SKU: 1995751877966</p>
-            <p>Categories: Potter Plants</p>
-            <p>Tags: Home, Garden, Plants</p>
+            <p className=' capitalize'>Categories: {singleProduct?.category}</p>
             <div>
                 <h1>Share this products:</h1>
                 <FaFacebookF size={15} />
