@@ -14,7 +14,6 @@ const ShoppingCart = () => {
     const numbersArray = savedItem?.map(item => parseInt(item))
     setSavedItems([...numbersArray])
   },[])
-  console.log(savedItems);
   const {getProductFilter} = useShopStore()
   const receiveProducts = async() => {
     const response = await getProductFilter()

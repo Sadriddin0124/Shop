@@ -9,6 +9,7 @@ import "./Navbar.scss";
 import { FaBars } from "react-icons/fa";
 import { getProductSize } from "../../plugins/getProductSize";
 import { useShopStore } from "../../store/ShopStore/ShopStore";
+import AuthModal from "../Auth/Auth";
 const Navbar = () => {
   const {searchProduct} = useShopStore()
   const [navLinks, setNavLinks] = useState([
@@ -45,6 +46,7 @@ const Navbar = () => {
   const saveCategory = (category) => {
     sessionStorage.setItem("category", category)
   }
+  const [auth, setAuth] = useState(false)
   return (
     <nav className="nav">
       <div className="navbar__container">
@@ -107,7 +109,7 @@ const Navbar = () => {
               </li>
             );
           })}
-          <li className="navbar__link">
+          <li className="navbar__link cursor-pointer" onClick={()=>setAuth(true)}>
             <img src={Logout} alt="login" />
             <p>Login</p>
           </li>
@@ -126,7 +128,7 @@ const Navbar = () => {
               {savedItem}
             </p>
           </Link>
-          <button className="navbar__login">
+          <button className="navbar__login" onClick={()=>setAuth(true)}>
             <img src={Logout} alt="login" />
             <p>Login</p>
           </button>
@@ -135,6 +137,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      <AuthModal open={auth} toggle={()=>setAuth(false)}/>
     </nav>
   );
 };

@@ -103,47 +103,16 @@ button.slick-arrow.slick-prev {
 
 .slider__img {
   position: absolute;
-  content: '';
   width: 50%;
   height: 100%;
-  border-left: 10px solid var(--colorGreen);
-  z-index: 13;
-  border-radius: 50%;
-  top: -10%;
-  right: -10%;
+  right: 0;
+  border: 1.2vw solid var(--colorGreen);
+  border-radius: 50% 0 50% 0;
   overflow: hidden;
-  .slider__price {
-    position: absolute;
-    z-index: 15;
-    top: 60px;
-    left: 15%;
-    .icon {
-      position: relative;
-      font-size: 100px;
-      transform: rotate(-90deg);
-      color: var(--colorGreen);
-    }
-    p {
-      position: absolute;
-      top: 35%;
-      left: 25%;
-      color: white;
-      font-size: 24px;
-    }
-  }
-  .img {
-    position: absolute;
-    right: 10%;
-    bottom: 0%;
-    z-index: 14;
-    width: 80%;
-    height: 50vh;
-    img {
-      width: 100%;
-      height: 100%;
-      mix-blend-mode: multiply !important;
-      object-fit: contain;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    padding: 0 !important;
   }
 }
 
@@ -177,8 +146,9 @@ button.slick-arrow.slick-prev {
 
 .slider__subtitle {
   color: #727272;
-  font-size: 14px;
+  font-size: 24px;
   line-height: 34px;
+  font-weight: 600;
   max-width: 557px;
 }
 
