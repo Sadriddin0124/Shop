@@ -2,18 +2,34 @@ import React, { useEffect, useState } from "react";
 import "./Card.scss";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import { IoBasketOutline } from "react-icons/io5";
-import { IoMdBasket } from "react-icons/io";
 import { getProductSize } from "../../../../plugins/getProductSize";
 import { Link } from "react-router-dom";
-const Card = ({ img, title, price, id, saveToBasket, category }) => {
+const Card = ({ img, title, price, id, saveToFav, category }) => {
   const [heartActive, setHeartActive] = useState(false);
-  const [basketActive, setBasketActive] = useState(false);
-  const saveBasket = (id) => {
-    saveToBasket(id);
-    setBasketActive(!basketActive);
+  const [liked, setLiked] = useState([])
+  useEffect(()=> {
+    const savedItem = JSON.parse(localStorage.getItem("liked"))
+    setLiked(savedItem)
+    if (savedItem?.includes(id)) {
+      setHeartActive(true)
+    }else {
+      setHeartActive(false)
+    }
+  }, [])
+  const saveFav = (id) => {
+    saveToFav(id);
     getProductSize();
+    setHeartActive(!heartActive)
   };
+  const disLiked = (id) => {
+    console.log(id);
+    const savedItem = JSON.parse(localStorage.getItem("liked"))
+    setLiked(savedItem)
+    setHeartActive(!heartActive)
+    let filter = liked?.filter(item=> item !== id)
+    console.log(filter);
+    localStorage.setItem("liked", JSON.stringify(filter))
+  }
   const saveCategory = () => {
     sessionStorage.setItem("category", category)
   }
@@ -23,24 +39,20 @@ const Card = ({ img, title, price, id, saveToBasket, category }) => {
         <Link className="shop__link" to={`/single_page/${id}`} onClick={saveCategory}>
           <img src={img} alt={title} />
         </Link>
+        <button className="heart">
         <FaRegHeart
           className={`heart__outline ${heartActive ? "disliked" : "liked"}`}
-          onClick={() => setHeartActive((prev) => !prev)}
+          onClick={() => saveFav(id)}
         />
         <FaHeart
           className={`heart__regular ${heartActive ? "liked" : "disliked"}`}
-          onClick={() => setHeartActive((prev) => !prev)}
+          onClick={() => disLiked(id)}
         />
+        </button>
       </div>
       <div className="shop_card__footer">
         <h1>{title}</h1>
         <h3>${price}</h3>
-        <button className="basket" onClick={() => saveBasket(id)}>
-          <IoBasketOutline
-            className={`icon ${basketActive ? "hidden" : "block"}`}
-          />
-          <IoMdBasket className={`icon ${basketActive ? "block" : "hidden"}`} />
-        </button>
       </div>
     </div>
   );

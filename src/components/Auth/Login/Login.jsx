@@ -4,16 +4,21 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import Google from "../../../assets/google.png"
 import Facebook from "../../../assets/facebook.png"
+import { useShopAuthStore } from "../../../store/Auth/ShopAuthStore";
 const Login = () => {
   const [type, setType] = useState(false)
-  const handleLogin = (e) => {
+  const {Login} = useShopAuthStore()
+  const handleLogin = async(e) => {
     e.preventDefault()
     let username = e.target[0].value
-    let password = e.target[2].value
-    let data = JSON.parse(localStorage.getItem("registeredData"))
-    let find = data?.find((item)=> item?.username === username || item?.password === password)
-    console.log(find);
-    find ? sessionStorage.setItem("login", JSON.stringify(find)) : sessionStorage.setItem("login", "[]")
+    let password = e.target[1].value
+    const response = await Login({username, password})
+    console.log(response);
+    sessionStorage.setItem("me", JSON.stringify(response?.data))
+    localStorage.setItem("token", response?.data?.token)
+    if (response?.status === 200) {
+      window.location.reload()
+    }
   }
   return (
     <div className="w-[100%] p-[30px] flex flex-col gap-[20px]">

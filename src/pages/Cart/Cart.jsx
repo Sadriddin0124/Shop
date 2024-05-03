@@ -6,7 +6,7 @@ const Cart = () => {
   return (
     <div className='home'>
       <ShoppingCart/>
-      <MapContainer/>
+      {/* <MapContainer/> */}
     </div>
   )
 }

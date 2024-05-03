@@ -16,13 +16,12 @@ const Plants = () => {
     } else {
       setActivePage(1);
     }
-    const savedItem = localStorage.getItem("basket")?.split(",")
-    const numbersArray = savedItem?.map(item => parseInt(item))
-    const set = new Set(numbersArray)
+    const savedItem = JSON.parse(localStorage.getItem("liked"))
+    setLiked(savedItem)
   }, []);
-  const [plantData, setPlantData] = useState([]);
-  const totalPages = plantData?.total;
-  const [limit, setLimit] = useState(16);
+  const [productsData, setProductsData] = useState([]);
+  const totalPages = productsData?.total;
+  const [limit, setLimit] = useState(12);
   const [skip, setSkip] = useState((pageActive + 1) * limit);
   let pages = [];
   for (let index = 1; index < parseInt(totalPages / limit); index++) {
@@ -32,7 +31,7 @@ const Plants = () => {
   const receiveProducts = async () => {
     const response = await getProducts(limit, skip);
     console.log(response);
-    setPlantData(response?.data);
+    setProductsData(response?.data);
   };
   const changePage = async (item) => {
     setSkip(item * limit);
@@ -55,18 +54,18 @@ const Plants = () => {
     const response = await getProducts(limit, skip);
     window.location.reload();
   };
-  let result = []
+  const [liked, setLiked] = useState([])
   const [activeSlice, setActiveSlice] = useState(3);
-  const saveToBasket = (id) => {
-    result.push(id)
-    console.log(result);
-    localStorage.setItem("basket", result)
+  const saveToFav = (id) => {
+    liked.push(id)
+    console.log(liked);
+    localStorage.setItem("liked", JSON.stringify(liked))
     getProductSize()
 }
   return (
     <>
       <div className="shops">
-        {plantData?.products?.map((item, index) => {
+        {productsData?.products?.map((item, index) => {
           return (
             <Card
               key={index}
@@ -74,7 +73,7 @@ const Plants = () => {
               price={item?.price}
               img={item?.thumbnail}
               id={item?.id}
-              saveToBasket={saveToBasket}
+              saveToFav={saveToFav}
               category={item?.category}
             />
           );

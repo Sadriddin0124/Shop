@@ -4,22 +4,23 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useShopStore } from "../../../store/ShopStore/ShopStore";
+import { useShopCartStore } from "../../../store/CartStore/CartStore";
 
 const ShoppingCart = () => {
   const [cartData, setCartData] = useState([]);
   let [savedItems, setSavedItems] = useState([])
+  const {getAllCarts} = useShopCartStore()
   useEffect(()=> {
     receiveProducts()
     const savedItem = localStorage.getItem("basket")?.split(",")
     const numbersArray = savedItem?.map(item => parseInt(item))
-    setSavedItems([...numbersArray])
+    setSavedItems(numbersArray)
   },[])
   const {getProductFilter} = useShopStore()
   const receiveProducts = async() => {
     const response = await getProductFilter()
-    console.log(response?.data?.products?.filter(item=> {
-      console.log(item.category);
-    }));
+    const res = await getAllCarts()
+    console.log(res);
     setCartData(response?.data?.products)
   }
   const [counter, setCounter] = useState(2)

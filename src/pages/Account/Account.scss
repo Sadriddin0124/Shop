@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-column {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.account {
+    width: 100%;
+    @extend %flex-center;
+    justify-content: start;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.account__left {
+    width: 300px;
+}
+
+.account__right {
+    @extend %flex-column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+.account__title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.account__infos {
+    width: 100%;
+    gap: 40px;
+    @extend %flex-center;
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.account__data {
+    width: 60%;
+}
+
+.account__img {
+    width: 200px;
+    height: 200px;
+    // gap: 10px;
+    div {
+        margin-bottom: 10px;
+        border-radius: 50%;
+        border: 1vw double var(--colorGreen);
+        overflow: hidden;
+        padding: 5px;
+
+        img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    button {
+        width: 100%;
+    }
+}
+
+.account__info {
+    @extend %flex-column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 5px;
+}
+
+.account__info-title {
+    font-size: 14px;
+    position: relative;
+}
+
+.account__info-title::after {
+    position: absolute;
+    content: " *";
+    color: red;
+    margin-left: 5px;
+    bottom: -8px;
+    font-size: 20px;
+}
+
+.account__info-data {
+    padding: 12px;
+    border: 1px solid silver;
+    border-radius: 4px;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .account__left {
+        width: 250px;
+    }
+}
+
+@media (max-width: 720px) {
+    .account__left {
+        display: none;
+    }
+}
