@@ -66,7 +66,6 @@ const Navbar = () => {
                 className={`navbar__link ${
                   url === item?.path ? "navbar__active-link" : ""
                 }`}
-                onClick={() => changeLink(item?.id)}
               >
                 <Link className="mobile" to={item?.path} onClick={()=>setUrl(item?.path)}>
                   {item?.icon}

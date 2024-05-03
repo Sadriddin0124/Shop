@@ -28,7 +28,7 @@ const Favourites = () => {
         <ProfileSideBar/>
         </div>
         <div className='liked__cards'>
-        {productsData?.filter(item=> liked.includes(item?.id))?.map((item, index) => {
+        {productsData?.filter(item=> liked?.includes(item?.id))?.map((item, index) => {
           return (
             <Card
               key={index}
