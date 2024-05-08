@@ -16,8 +16,10 @@ const Plants = () => {
     } else {
       setActivePage(1);
     }
-    const savedItem = JSON.parse(localStorage.getItem("liked"))
-    setLiked(savedItem)
+    const savedItem = JSON.parse(localStorage.getItem("liked"));
+    if (savedItem) {
+      setLiked(savedItem);
+    }
   }, []);
   const [productsData, setProductsData] = useState([]);
   const totalPages = productsData?.total;
@@ -54,14 +56,13 @@ const Plants = () => {
     const response = await getProducts(limit, skip);
     window.location.reload();
   };
-  const [liked, setLiked] = useState([])
+  const [liked, setLiked] = useState([]);
   const [activeSlice, setActiveSlice] = useState(3);
   const saveToFav = (id) => {
-    liked.push(id)
-    console.log(liked);
-    localStorage.setItem("liked", JSON.stringify(liked))
-    getProductSize()
-}
+    liked.push(id);
+    localStorage.setItem("liked", JSON.stringify(liked));
+    getProductSize();
+  };
   return (
     <>
       <div className="shops">

@@ -9,7 +9,9 @@ const Card = ({ img, title, price, id, saveToFav, category }) => {
   const [liked, setLiked] = useState([])
   useEffect(()=> {
     const savedItem = JSON.parse(localStorage.getItem("liked"))
-    setLiked(savedItem)
+    if (savedItem) {
+      setLiked(savedItem)
+    }
     if (savedItem?.includes(id)) {
       setHeartActive(true)
     }else {
@@ -22,12 +24,10 @@ const Card = ({ img, title, price, id, saveToFav, category }) => {
     setHeartActive(!heartActive)
   };
   const disLiked = (id) => {
-    console.log(id);
     const savedItem = JSON.parse(localStorage.getItem("liked"))
     setLiked(savedItem)
     setHeartActive(!heartActive)
     let filter = liked?.filter(item=> item !== id)
-    console.log(filter);
     localStorage.setItem("liked", JSON.stringify(filter))
   }
   const saveCategory = () => {

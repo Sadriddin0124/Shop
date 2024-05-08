@@ -14,10 +14,10 @@ import { GoHeart, GoHome } from "react-icons/go";
 import { MdFilterList } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { PiHandbag } from "react-icons/pi";
-const Navbar = () => {
+const Navbar = ({setSavedSize, savedSize}) => {
   const { searchProduct } = useShopStore();
   const [navLinks, setNavLinks] = useState([
-    { id: 1, text: "Home", path: "", icon: <GoHome /> },
+    { id: 1, text: "Home", path: "/", icon: <GoHome /> },
     { id: 2, text: "Category", path: "/category", icon: <BiCategory /> },
     { id: 3, text: "Basket", path: "/cart", icon: <PiHandbag /> },
     { id: 4, text: "Favourites", path: "/liked", icon: <GoHeart /> },
@@ -26,26 +26,24 @@ const Navbar = () => {
   const [activeLinkID, setActiveLinkID] = useState(1);
   const [menu, setMenu] = useState(false);
   const [searchProductValue, setSearchProductValue] = useState([]);
-  const [savedItem, setSavedItem] = useState(0);
   const [status, setStatus] = useState('');
-  const [url, setUrl] = useState("")
-  console.log(url);
+  const [url, setUrl] = useState("/")
   useEffect(() => {
     const url = "/" + window.location.href.split("/")[3]
     setUrl(url)
+    console.log(url);
     let me = JSON.parse(sessionStorage.getItem("me"))
     if (me) {
       setStatus(me)
     }else {
       setStatus(me)
     }
-    const itemSize = getProductSize();
-    setSavedItem(itemSize.size);
   }, []);
   const searchProducts = async (e) => {
     let value = e.target.value;
     const response = await searchProduct(value);
     setSearchProductValue(response?.data?.products);
+    setNavbarVisible(true)
   };
   const [navbarVisible, setNavbarVisible] = useState(false);
   const saveCategory = (category) => {
@@ -152,16 +150,16 @@ const Navbar = () => {
           <Link to="/cart" className="navbar__shop">
             <CiShoppingCart size={28} />
             <p
-              className={`navbar__item-num ${savedItem === 0 ? "hidden" : ""}`}
+              className={`navbar__item-num ${savedSize == 0 ? "none" : ""}`}
             >
-              {savedItem}
+              {savedSize}
             </p>
           </Link>
           <button className={`navbar__login ${status ? "none" : ""}`} onClick={() => setAuth(true)}>
             <img src={Logout} alt="login" />
             <p>Login</p>
           </button>
-          <Link to="/profile" className="profile__img">
+          <Link to="/account" className={`profile__img ${status?.id ? "" : "none"}`}>
             <img src={status?.image} alt={status?.firstName} />
           </Link>
           <button className="burger" onClick={() => setMenu((prev) => !prev)}>

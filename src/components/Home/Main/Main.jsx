@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Main.scss";
-import Button from "../../Button/Button";
-import MainLeftImage from "../../../assets/main__left.png";
 import Cards from "../Cards/Cards";
 import NewArrivals from "../New Arrivals/NewArrivals";
 import Sale from "../Sale/Sale";
@@ -39,7 +37,7 @@ const Main = () => {
     }
   }, []);
   const [rightNav, setRightNav] = useState([
-    { id: 1, text: "All Plants" },
+    { id: 1, text: "All Products" },
     { id: 2, text: "New Arrivals" },
     { id: 3, text: "Sale" },
   ]);
@@ -58,7 +56,7 @@ const Main = () => {
   ])
   return (
     <div className="main__container">
-      <div className="main__left">
+      {/* <div className="main__left">
         <div className="main__categories">
           <h4 className="main__left-title">Categories</h4>
           <div className="main__categories-list">
@@ -110,35 +108,18 @@ const Main = () => {
         <div className="main__left-img">
           <img src={MainLeftImage} alt="main__left" />
         </div>
-      </div>
+      </div> */}
       <div className="main__right">
         <div className="main__right-nav">
           <ul className="main__right-navList">
-            {rightNav?.map((item, index) => {
-              return (
                 <li
-                  key={index}
-                  className={`main__right-navLink ${
-                    activeMainLink === item?.id ? "activeMainLink" : ""
-                  }`}
-                  onClick={() => changeMainPart(item?.id)}
+                  className={`main__right-navLink activeMainLink`}
                 >
-                  {item?.text}
+                  All Products
                 </li>
-              );
-            })}
           </ul>
-          {/* <div>
-            <p>Sort by: default sorting </p>
-          </div> */}
         </div>
-        {
-            components?.filter(item=> item?.id === activeMainLink).map((item,index)=> {
-                return <div key={item?.id} className="main__right-cards">
-                    {item?.component}
-                </div>
-            })
-        }
+        <Cards/>
       </div>
     </div>
   );

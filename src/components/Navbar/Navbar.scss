@@ -162,7 +162,7 @@
   }
 }
 .none {
-    display: none;
+    display: none !important;
 }
 .navbar__search {
   font-size: 24px;
@@ -240,6 +240,11 @@
     background: rgba(192, 192, 192, 0.31);
     input {
       background: transparent;
+    }
+    .navbar__search-list {
+      top: 80px;
+      left: 20px;
+      width: calc(80% - 40px);
     }
   }
   .profile {

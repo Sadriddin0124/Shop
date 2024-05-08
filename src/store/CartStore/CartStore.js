@@ -10,4 +10,12 @@ export const useShopCartStore = create((set) => ({
             console.log(error);
         }
     },
+    addCart: async(payload)=> {
+        try {
+          const response = axiosClient.post(`/carts/add`, payload)
+          return response
+        } catch (error) {
+            console.log(error);
+        }
+    },
  }))

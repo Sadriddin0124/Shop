@@ -74,7 +74,7 @@ const Footer = () => {
   ]);
   return (
     <footer className="footer">
-      <div className="footer__top">
+      {/* <div className="footer__top">
         <div className="footer__top-cards">
           {footerTop?.map((item, index) => {
             return (
@@ -128,7 +128,7 @@ const Footer = () => {
           <PiPhoneCallLight className="footer__center-icon" />
           <p className="footer__center-text">+88 01911 717 490</p>
         </div>
-      </div>
+      </div> */}
       <div className="footer__bottom">
         {footerBottom?.map((item, index) => {
           return (
