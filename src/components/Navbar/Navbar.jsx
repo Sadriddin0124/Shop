@@ -14,6 +14,8 @@ import { GoHeart, GoHome } from "react-icons/go";
 import { MdFilterList } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { PiHandbag } from "react-icons/pi";
+import { FiLogIn } from "react-icons/fi";
+
 const Navbar = ({setSavedSize, savedSize}) => {
   const { searchProduct } = useShopStore();
   const [navLinks, setNavLinks] = useState([
@@ -111,36 +113,13 @@ const Navbar = ({setSavedSize, savedSize}) => {
               })}
             </div>
           </div>
-          <button className="profile" onClick={() => setMenu((prev) => !prev)}>
-            <MdFilterList size={24} />
+          <button className={`profile ${status ? "none" : ""}`} onClick={() => setAuth(true)}>
+            <FiLogIn size={24} />
           </button>
+          <Link to="/account" className={`profile__img ${status?.id ? "" : "none"}`}>
+            <img src={status?.image} alt={status?.firstName} />
+          </Link>
         </div>
-        <ul
-          className={`navbar__list2 ${
-            menu === true ? "right-[20px]" : "right-[-200px]"
-          } `}
-        >
-          {navLinks?.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className={`navbar__link ${
-                  activeLinkID === item?.id ? "navbar__activeLink" : ""
-                }`}
-                onClick={() => changeLink(item?.id)}
-              >
-                <Link to={item?.path}>{item?.text}</Link>
-              </li>
-            );
-          })}
-          <li
-            className="navbar__link cursor-pointer"
-            onClick={() => setAuth(true)}
-          >
-            <img src={Logout} alt="login" />
-            <p>Login</p>
-          </li>
-        </ul>
         <div className="navbar__line"></div>
         <div className="navbar__right">
           <CiSearch

@@ -30,12 +30,14 @@ const Login = () => {
           type="text"
           className="border border-[#EAEAEA] rounded-[6px] px-[14px] py-[12px] focus:border-[#46a358] outline-none focus:border w-[100%]"
           placeholder="Username"
+          defaultValue={"kminchelle"}
         />
         <div className="flex flex-col items-end gap-[14px] relative">
           <input
             type={type ? "text" : "password"}
             className="border border-[#EAEAEA] rounded-[6px] px-[14px] py-[12px] focus:border-[#46a358] outline-none focus:border w-[100%]"
             placeholder="Password"
+            defaultValue={"0lelplR"}
           />
           <Link className="text-[#46a358]">Forgot Password?</Link>
           <IoEyeOffOutline size={24} className={`${type ? "block" : "hidden"}  text-gray-600 absolute top-[12px] right-[14px] cursor-pointer`} onClick={()=>setType(prev=> !prev)}/>

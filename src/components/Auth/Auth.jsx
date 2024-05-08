@@ -46,14 +46,15 @@ export default function TransitionsModal({open, toggle}) {
           <Box sx={style}>
             <div className='flex justify-center items-center gap-[5px]'>
               <h1 onClick={()=>setActiveAuth(1)} className={`text-[20px] cursor-pointer font-[500] ${activeAuth === 1 ? "text-[#46a358]" : "text-[black]"}`}>Login</h1>
-              <div className='h-[14px] w-[1px] bg-gray-500'></div>
-              <h1 onClick={()=>setActiveAuth(2)} className={`text-[20px] cursor-pointer font-[500] ${activeAuth === 1 ? "text-[black]" : "text-[#46a358]"}`}>Register</h1>
+              {/* <div className='h-[14px] w-[1px] bg-gray-500'></div> */}
+              {/* <h1 onClick={()=>setActiveAuth(2)} className={`text-[20px] cursor-pointer font-[500] ${activeAuth === 1 ? "text-[black]" : "text-[#46a358]"}`}>Register</h1> */}
             </div>
-            {
+            <Login/>
+            {/* {
               components?.map((item,index)=> {
                 return <div key={index} className={item?.id === activeAuth ? "block" : "hidden"}>{item?.component}</div>
               })
-            }
+            } */}
           </Box>
         </Fade>
       </Modal>
