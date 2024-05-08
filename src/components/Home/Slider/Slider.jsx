@@ -28,7 +28,9 @@ const ImgSlider = ({ setSearchClick }) => {
     console.log(response);
     setImages(response?.data?.products);
   };
-
+  const saveCategory = (category) => {
+    sessionStorage.setItem("category", category)
+  }
   return (
     <Slider {...settings} className="slider">
       {images.map((image, index) => (
@@ -42,7 +44,7 @@ const ImgSlider = ({ setSearchClick }) => {
             <h1 className="slider__title">{image?.title}</h1>
             <h3 className="slider__subtitle">discount: -{parseInt(image?.discountPercentage)}%</h3>
             <h3 className="text-[22px] font-[500] text-green-600">${image?.price}</h3>
-            <Link to={`/single_page/${image?.id}`} className="w-[200%] h-[100%] absolute left-0">
+            <Link to={`/single_page/${image?.id}`} className="w-[200%] h-[100%] absolute left-0" onClick={()=>saveCategory(image?.category)}>
             </Link>
           </div>
           <div className="slider__img">

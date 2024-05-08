@@ -5,7 +5,6 @@ const Profile = () => {
   
   return (
     <div className='home'>
-      <h1>Profile</h1>
       <ProfileSideBar/>
     </div>
   )
