@@ -223,6 +223,12 @@
     align-self: center;
 }
 
+@media (max-width: 700px) {
+  .cart__card,.card__top-input,.card__top-join {
+    width: 100%;
+  }
+}
+
 @media (max-width: 550px) {
   .tbody__line {
     border-radius: 20px;
